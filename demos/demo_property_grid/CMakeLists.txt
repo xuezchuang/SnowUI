@@ -1,0 +1,2 @@
+add_executable(demo_property_grid main.cpp)
+target_link_libraries(demo_property_grid PRIVATE SnowUI)
