@@ -1,4 +1,5 @@
 #include "SnowUI/Render/OpenGLBackend.h"
+#include "SnowUI/Render/GLFWUtils.h"
 #include <iostream>
 #include <cstring>
 
@@ -29,7 +30,7 @@ namespace SnowUI
 	bool OpenGLBackend::CreateWindow(const std::string& title, int width, int height)
 	{
 #ifdef SNOWUI_GLFW_ENABLED
-		if (!glfwInit())
+		if (!InitializeGLFW())
 		{
 			std::cerr << "OpenGL Backend: Failed to initialize GLFW" << std::endl;
 			return false;
@@ -43,7 +44,7 @@ namespace SnowUI
 		if (!glfwWindow)
 		{
 			std::cerr << "OpenGL Backend: Failed to create GLFW window" << std::endl;
-			glfwTerminate();
+			TerminateGLFW();
 			return false;
 		}
 
@@ -72,9 +73,9 @@ namespace SnowUI
 		if (window_ && ownsWindow_)
 		{
 			glfwDestroyWindow(static_cast<GLFWwindow*>(window_));
-			glfwTerminate();
 			window_ = nullptr;
 			ownsWindow_ = false;
+			TerminateGLFW();
 		}
 #endif
 	}

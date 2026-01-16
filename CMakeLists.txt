@@ -49,6 +49,7 @@ add_library(SnowUI STATIC
     src/Widgets/Label.cpp
     src/Widgets/PropertyGrid.cpp
     src/Layout/Layout.cpp
+    src/Render/GLFWUtils.cpp
     src/Render/OpenGLBackend.cpp
     src/Render/SkiaBackend.cpp
 )
