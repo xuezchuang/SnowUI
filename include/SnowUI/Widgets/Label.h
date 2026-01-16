@@ -2,14 +2,16 @@
 
 #include "../Core/Widget.h"
 
-namespace SnowUI {
+namespace SnowUI
+{
 
-class Label : public Widget {
-public:
-    Label();
-    virtual ~Label() = default;
-    
-    void OnPaint(DrawList& drawList) override;
-};
+	class Label : public Widget
+	{
+	  public:
+		Label();
+		virtual ~Label() = default;
+
+		void OnPaint(DrawList& drawList) override;
+	};
 
 } // namespace SnowUI

@@ -1,8 +1,10 @@
 #include "SnowUI/Core/Dialog.h"
 
-namespace SnowUI {
+namespace SnowUI
+{
 
-Dialog::Dialog() {
-}
+	Dialog::Dialog()
+	{
+	}
 
 } // namespace SnowUI
