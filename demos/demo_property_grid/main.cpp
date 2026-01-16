@@ -34,11 +34,10 @@ int main()
 	propertyGrid->AddProperty("BackColor", "#202020", "color");
 
 	window->AddChild(propertyGrid);
-	window->Show();
 
-	// Simple render loop (single frame for demo)
-	std::cout << "Rendering property grid..." << std::endl;
-	window->Render();
+	// Run the main window loop (blocks until window is closed)
+	std::cout << "Running property grid window (close window to exit)..." << std::endl;
+	window->Run();
 
 	std::cout << "Demo completed successfully!" << std::endl;
 
