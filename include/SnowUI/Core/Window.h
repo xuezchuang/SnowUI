@@ -26,6 +26,12 @@ namespace SnowUI
 		// Check if window should close
 		bool ShouldClose() const;
 
+		// Check if a platform window was successfully created
+		bool HasWindow() const
+		{
+			return hasWindow_;
+		}
+
 		void SetTitle(const std::string& title)
 		{
 			title_ = title;
@@ -51,6 +57,7 @@ namespace SnowUI
 		IRenderBackend* backend_;
 		DrawList drawList_;
 		bool shouldClose_;
+		bool hasWindow_;
 		std::function<void()> onClose_;
 	};
 

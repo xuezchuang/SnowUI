@@ -4,7 +4,7 @@
 namespace SnowUI
 {
 
-	Window::Window() : backend_(nullptr), shouldClose_(false)
+	Window::Window() : backend_(nullptr), shouldClose_(false), hasWindow_(false)
 	{
 		visible_ = false;
 	}
@@ -14,17 +14,18 @@ namespace SnowUI
 		title_ = title;
 		bounds_ = Rect(0, 0, static_cast<float>(width), static_cast<float>(height));
 		backend_ = backend;
+		hasWindow_ = false;
 
 		if (backend_)
 		{
 			// First create the window (which sets up the GL context)
-			if (!backend_->CreateWindow(title, width, height))
+			hasWindow_ = backend_->CreateWindow(title, width, height);
+			if (!hasWindow_)
 			{
-				std::cerr << "Window: Failed to create platform window" << std::endl;
-				// Fall back to non-windowed mode
+				std::cerr << "Window: Failed to create platform window - will run in headless mode" << std::endl;
 			}
 
-			// Then initialize the rendering context
+			// Initialize the rendering context regardless of window creation
 			if (!backend_->Initialize(width, height))
 			{
 				return false;
@@ -50,6 +51,12 @@ namespace SnowUI
 
 	bool Window::ShouldClose() const
 	{
+		// If no window was created, exit immediately
+		if (!hasWindow_)
+		{
+			return true;
+		}
+
 		if (backend_)
 		{
 			return shouldClose_ || backend_->ShouldClose();
@@ -59,8 +66,8 @@ namespace SnowUI
 
 	void Window::Update()
 	{
-		// Poll for events
-		if (backend_)
+		// Poll for events only if we have a window
+		if (backend_ && hasWindow_)
 		{
 			backend_->PollEvents();
 		}
@@ -85,6 +92,13 @@ namespace SnowUI
 	void Window::Run()
 	{
 		Show();
+
+		if (!hasWindow_)
+		{
+			std::cout << "Window: No platform window available - rendering single frame" << std::endl;
+			Render();
+			return;
+		}
 
 		std::cout << "Window: Starting main loop" << std::endl;
 
