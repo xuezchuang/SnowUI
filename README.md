@@ -1,16 +1,35 @@
 # SnowUI
 
-Cross-platform C++ UI framework inspired by MFC/BCG. Self-built widgets and message-driven architecture. Rendering backends: OpenGL + Skia. Includes demos like PropertyGrid and engineering parameter dialogs.
+<div align="center">
 
-## Features
+![C++](https://img.shields.io/badge/C++-17-blue.svg?style=flat&logo=c%2B%2B)
+![CMake](https://img.shields.io/badge/CMake-3.15+-064F8C.svg?style=flat&logo=cmake)
+![OpenGL](https://img.shields.io/badge/OpenGL-4.0+-5586A4.svg?style=flat&logo=opengl)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg?style=flat)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=flat)
 
-- **Self-built UI System**: All windows, dialogs, widgets, events, and layouts implemented from scratch
-- **Backend Abstraction**: UI code never calls OpenGL/Skia directly
-- **Swappable Rendering**: Support for multiple rendering backends (OpenGL, Skia) via `IRenderBackend` interface
-- **Cross-platform**: Designed for Windows, Linux, and macOS
-- **MFC/BCG Inspired**: Familiar architecture for developers coming from Windows MFC/BCG frameworks
+**Cross-platform C++ UI framework inspired by MFC/BCG**
 
-## Architecture
+*Self-built widgets • Message-driven architecture • Pluggable rendering backends*
+
+[Features](#features) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Roadmap](#roadmap)
+
+</div>
+
+---
+
+## ✨ Features
+
+- 🎨 **Self-built UI System**: All windows, dialogs, widgets, events, and layouts implemented from scratch
+- 🔌 **Backend Abstraction**: UI code never calls OpenGL/Skia directly
+- 🔄 **Swappable Rendering**: Support for multiple rendering backends (OpenGL, Skia) via `IRenderBackend` interface
+- 🌍 **Cross-platform**: Designed for Windows, Linux, and macOS
+- 🏗️ **MFC/BCG Inspired**: Familiar architecture for developers coming from Windows MFC/BCG frameworks
+- ⚡ **Lightweight**: Minimal dependencies, fast build times
+- 🎯 **Type-safe**: Modern C++17 with strong type checking
+
+## 🏛️ Architecture
 
 ### Core Concepts
 
@@ -42,7 +61,7 @@ SnowUI/
 └── .github/copilot-instructions.md  # GitHub Copilot instructions
 ```
 
-## Building
+## 🔧 Building
 
 ### Requirements
 
@@ -66,7 +85,7 @@ cmake --build .
 cmake --build . -j$(nproc)
 ```
 
-## Running Demos
+## 🚀 Running Demos
 
 ### Property Grid Demo
 
@@ -84,7 +103,7 @@ Shows an engineering parameter input dialog for soil properties:
 ./build/demos/demo_soil_dialog/demo_soil_dialog
 ```
 
-## Quick Start
+## 📖 Quick Start
 
 ### Creating a Simple Window
 
@@ -128,13 +147,18 @@ public:
 };
 ```
 
-## Documentation
+## 📚 Documentation
 
-- **AGENTS.md**: Instructions for AI agents working on the codebase
-- **CLAUDE.md**: Detailed guidance for Claude AI
-- **.github/copilot-instructions.md**: GitHub Copilot instructions
+| Document | Description |
+|----------|-------------|
+| [AGENTS.md](AGENTS.md) | Instructions for AI agents working on the codebase |
+| [CLAUDE.md](CLAUDE.md) | Detailed guidance for Claude AI |
+| [ROADMAP.md](ROADMAP.md) | Long-term development roadmap and plans |
+| [.github/copilot-instructions.md](.github/copilot-instructions.md) | GitHub Copilot instructions |
 
-## Current Status
+## 📊 Current Status
+
+> **Phase 1: Foundation (Current)** - Building the architectural skeleton
 
 This is a **minimal buildable skeleton**. The framework includes:
 
@@ -156,22 +180,52 @@ This is a **minimal buildable skeleton**. The framework includes:
 
 These will be implemented while maintaining the architecture and backend independence.
 
-## Design Principles
+## 💡 Design Principles
 
-1. **Separation of Concerns**: UI logic completely separate from rendering
-2. **Backend Independence**: All rendering through DrawList → IRenderBackend
-3. **No Direct GL/Skia Calls**: UI widgets only add commands to DrawList
-4. **Message-Driven**: Events flow from window → widgets through OnEvent()
+| Principle | Description |
+|-----------|-------------|
+| **Separation of Concerns** | UI logic completely separate from rendering |
+| **Backend Independence** | All rendering through DrawList → IRenderBackend |
+| **No Direct GL/Skia Calls** | UI widgets only add commands to DrawList |
+| **Message-Driven** | Events flow from window → widgets through OnEvent() |
+| **Zero Dependencies** | No external UI libraries, self-contained design |
 
-## Contributing
+## 🗺️ Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for detailed development plans and milestones.
+
+**Quick Overview:**
+- ✅ **Phase 1**: Architecture & skeleton (Current)
+- 🔄 **Phase 2**: Window system integration (GLFW/SDL)
+- 📅 **Phase 3**: Full rendering backend implementation
+- 📅 **Phase 4**: Advanced widgets & layout system
+- 📅 **Phase 5**: Theming & styling system
+
+## 🤝 Contributing
 
 When contributing, please:
-- Maintain backend independence in UI code
-- Never call OpenGL/Skia directly from UI widgets
-- Implement features in both OpenGL and Skia backends
-- Follow C++17 standards
-- Use existing code style (see documentation files)
+- ✅ Maintain backend independence in UI code
+- ✅ Never call OpenGL/Skia directly from UI widgets
+- ✅ Implement features in both OpenGL and Skia backends
+- ✅ Follow C++17 standards
+- ✅ Use existing code style (see documentation files)
+- ✅ Add tests for new features
+- ✅ Update documentation accordingly
 
-## License
+## 📄 License
 
-[License information to be added]
+MIT License - see [LICENSE](LICENSE) file for details
+
+## 🌟 Star History
+
+If you find SnowUI useful, please consider giving it a star! ⭐
+
+---
+
+<div align="center">
+
+**Made with ❤️ by the SnowUI Team**
+
+[Report Bug](https://github.com/xuezchuang/SnowUI/issues) • [Request Feature](https://github.com/xuezchuang/SnowUI/issues)
+
+</div>
