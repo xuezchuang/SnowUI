@@ -3,6 +3,7 @@
 #include "Widget.h"
 #include "../Render/IRenderBackend.h"
 #include <memory>
+#include <functional>
 
 namespace SnowUI
 {
@@ -17,6 +18,13 @@ namespace SnowUI
 		void Show();
 		void Update();
 		void Render();
+		void Close();
+
+		// Main event loop - runs until window is closed
+		void Run();
+
+		// Check if window should close
+		bool ShouldClose() const;
 
 		void SetTitle(const std::string& title)
 		{
@@ -32,10 +40,18 @@ namespace SnowUI
 			return backend_;
 		}
 
+		// Event callbacks
+		void SetOnClose(std::function<void()> callback)
+		{
+			onClose_ = callback;
+		}
+
 	  protected:
 		std::string title_;
 		IRenderBackend* backend_;
 		DrawList drawList_;
+		bool shouldClose_;
+		std::function<void()> onClose_;
 	};
 
 } // namespace SnowUI

@@ -53,7 +53,7 @@ int main()
 {
 	std::cout << "SnowUI Soil Parameter Dialog Demo" << std::endl;
 
-	// Create Skia backend
+	// Create Skia backend (uses OpenGL fallback when Skia is not available)
 	SkiaBackend backend;
 
 	// Create dialog
@@ -65,11 +65,10 @@ int main()
 	}
 
 	dialog->OnInitDialog();
-	dialog->Show();
 
-	// Simple render loop (single frame for demo)
-	std::cout << "Rendering soil parameter dialog..." << std::endl;
-	dialog->Render();
+	// Run the main dialog loop (blocks until window is closed)
+	std::cout << "Running soil parameter dialog (close window to exit)..." << std::endl;
+	dialog->Run();
 
 	std::cout << "Demo completed successfully!" << std::endl;
 
