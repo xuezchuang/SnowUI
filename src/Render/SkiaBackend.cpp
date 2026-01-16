@@ -23,6 +23,10 @@
 namespace SnowUI
 {
 
+	// Text rendering constants (placeholder for real font system)
+	static constexpr float kDefaultCharWidth = 7.0f;
+	static constexpr float kDefaultCharHeight = 12.0f;
+
 	SkiaBackend::SkiaBackend() : width_(0), height_(0), initialized_(false), window_(nullptr), ownsWindow_(false)
 	{
 	}
@@ -235,28 +239,25 @@ namespace SnowUI
 		if (text.empty())
 			return;
 
-		const float charWidth = 7.0f;
-		const float charHeight = 12.0f;
-
 		float curX = x;
 		for (size_t i = 0; i < text.length(); ++i)
 		{
 			char c = text[i];
 			if (c == ' ')
 			{
-				curX += charWidth;
+				curX += kDefaultCharWidth;
 				continue;
 			}
 
 			glColor4f(color.r, color.g, color.b, color.a);
 			glBegin(GL_QUADS);
 			glVertex2f(curX, y);
-			glVertex2f(curX + charWidth - 1, y);
-			glVertex2f(curX + charWidth - 1, y + charHeight);
-			glVertex2f(curX, y + charHeight);
+			glVertex2f(curX + kDefaultCharWidth - 1, y);
+			glVertex2f(curX + kDefaultCharWidth - 1, y + kDefaultCharHeight);
+			glVertex2f(curX, y + kDefaultCharHeight);
 			glEnd();
 
-			curX += charWidth;
+			curX += kDefaultCharWidth;
 		}
 #else
 		(void)text;

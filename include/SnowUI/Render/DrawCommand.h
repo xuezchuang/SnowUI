@@ -84,13 +84,15 @@ namespace SnowUI
 			commands_.push_back(cmd);
 		}
 
+		// For DrawLine: x1=rect.x, y1=rect.y, x2=rect.width, y2=rect.height
+		// Note: width/height are repurposed as end point coordinates for lines
 		void AddLine(float x1, float y1, float x2, float y2, const Color& color)
 		{
 			DrawCommand cmd(DrawCommandType::DrawLine);
 			cmd.rect.x = x1;
 			cmd.rect.y = y1;
-			cmd.rect.width = x2;
-			cmd.rect.height = y2;
+			cmd.rect.width = x2;  // repurposed as x2 for line end point
+			cmd.rect.height = y2; // repurposed as y2 for line end point
 			cmd.color = color;
 			commands_.push_back(cmd);
 		}

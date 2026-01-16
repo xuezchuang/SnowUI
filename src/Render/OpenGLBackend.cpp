@@ -18,6 +18,10 @@
 namespace SnowUI
 {
 
+	// Text rendering constants (placeholder for real font system)
+	static constexpr float kDefaultCharWidth = 7.0f;
+	static constexpr float kDefaultCharHeight = 12.0f;
+
 	OpenGLBackend::OpenGLBackend() : width_(0), height_(0), initialized_(false), window_(nullptr), ownsWindow_(false)
 	{
 	}
@@ -235,18 +239,14 @@ namespace SnowUI
 		if (text.empty())
 			return;
 
-		// Draw a simple text indicator (a colored rectangle with character approximation)
-		// Each character is rendered as a 6x10 pixel block
-		const float charWidth = 7.0f;
-		const float charHeight = 12.0f;
-
+		// Draw a simple text indicator (a colored rectangle per character)
 		float curX = x;
 		for (size_t i = 0; i < text.length(); ++i)
 		{
 			char c = text[i];
 			if (c == ' ')
 			{
-				curX += charWidth;
+				curX += kDefaultCharWidth;
 				continue;
 			}
 
@@ -254,12 +254,12 @@ namespace SnowUI
 			glColor4f(color.r, color.g, color.b, color.a);
 			glBegin(GL_QUADS);
 			glVertex2f(curX, y);
-			glVertex2f(curX + charWidth - 1, y);
-			glVertex2f(curX + charWidth - 1, y + charHeight);
-			glVertex2f(curX, y + charHeight);
+			glVertex2f(curX + kDefaultCharWidth - 1, y);
+			glVertex2f(curX + kDefaultCharWidth - 1, y + kDefaultCharHeight);
+			glVertex2f(curX, y + kDefaultCharHeight);
 			glEnd();
 
-			curX += charWidth;
+			curX += kDefaultCharWidth;
 		}
 #else
 		(void)text;
